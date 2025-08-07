@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Location-Based Weather App</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather in Your Location 🌍</h1>
+  <button onclick="getLocationWeather()">Get My Weather</button>
+
+  <div id="result"></div>
+
+  <script>
+    function getLocationWeather() {
+      const apiKey = "YOUR_API_KEY"; // 🔴 Replace with your real API key
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              const temp = data.main.temp;
+              const description = data.weather[0].description;
+              const icon = data.weather[0].icon;
+              const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+              const city = data.name;
+
+              document.getElementById("result").innerHTML = `
+                <h2>${city}</h2>
+                <img src="${iconUrl}" alt="${description}">
+                <p><strong>${temp}°C</strong> - ${description}</p>
+              `;
+            })
+            .catch(error => {
+              document.getElementById("result").innerHTML = `<p style="color:red;">Weather not found.</p>`;
+            });
+
+        }, error => {
+          document.getElementById("result").innerHTML = `<p style="color:red;">Location access denied.</p>`;
+        });
+      } else {
+        document.getElementById("result").innerHTML = `<p>Your browser doesn't support location.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

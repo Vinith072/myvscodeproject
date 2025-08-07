@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cats</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f8cdda, #1d2b64);
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .cat-images {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .cat-images img {
+      width: 200px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.2s ease-in-out forwards;
+    }
+
+    .cat-images img:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+
+    .cat-images img:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .cat-images img:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .button-container {
+      margin-top: 40px;
+    }
+
+    .visit-btn {
+      background-color: #fff;
+      color: #1d2b64;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background-color 0.3s;
+    }
+
+    .visit-btn:hover {
+      background-color: #f8cdda;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cats</h1>
+
+  <p>
+    Cats are fascinating, graceful animals known for their independence and playful personalities.
+    With their keen senses, elegant movements, and affectionate nature, cats have been beloved companions to humans for thousands of years.
+    Whether curled up in a sunbeam or playfully chasing a toy, cats bring charm and comfort to our lives.
+  </p>
+
+  <div class="cat-images">
+    <img src="cat 1.jpg" alt="Cat 1">
+    <img src="cat 2.jpg" alt="Cat 2">
+    <img src="cat 3.jpg" alt="Cat 3">
+  </div>
+
+  <div class="button-container">
+    <button class="visit-btn" onclick="window.location.href='https://www.catster.com'">
+      Visit Catster 🐾
+    </button>
+  </div>
+
+</body>
+</html>

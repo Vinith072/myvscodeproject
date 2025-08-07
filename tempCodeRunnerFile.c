@@ -1,25 +1,50 @@
 #include <stdio.h>
+#define MAX 5
+
+int cqueue[MAX], front=-1, rear=-1;
+
+void enqueue(int value) {
+    if((front==0 && rear==MAX-1) || (rear+1)%MAX==front) {
+        printf("Circular Queue Overflow\n");
+    } else {
+        if(front==-1) front=rear=0;
+        else rear=(rear+1)%MAX;
+        cqueue[rear]=value;
+        printf("Inserted %d\n", value);
+    }
+}
+
+void dequeue() {
+    if(front==-1) {
+        printf("Circular Queue Underflow\n");
+    } else {
+        printf("Deleted %d\n", cqueue[front]);
+        if(front==rear) front=rear=-1;
+        else front=(front+1) % MAX;
+    }
+}
+
+void display() {
+    if(front==-1) {
+        printf("Circular Queue is empty\n");
+    } else {
+        printf("Circular Queue elements are:\n");
+        int i=front;
+        while(1) {
+            printf("%d\n",cqueue[i]);
+            if(i==rear) break;
+            i=(i+1)%MAX;
+        }
+    }
+}
 
 int main() {
-    int n, digit, sum = 0;
-    
-    // Prompt user for input (optional but useful)
-    printf("Enter a 5-digit number: ");
-    scanf("%d", &n);
-    
-    // Optional: check if it's a 5-digit number
-    if (n < 10000 || n > 99999) {
-        printf("Please enter a 5-digit number.\n");
-        return 1; // Exit with error
-    }
-
-    while (n > 0) {
-        digit = n % 10;  // Get the last digit
-        sum += digit;    // Add to sum
-        n = n / 10;      // Remove the last digit
-    }
-
-    printf("Sum of digits: %d\n", sum);
-    
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    enqueue(4);
+    dequeue();
+    enqueue(5);
+    display();
     return 0;
 }
